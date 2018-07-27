@@ -4,6 +4,7 @@
   "description": "Bot that posts quote in slack",
   "main": "index.js",
   "scripts": {
+    "start": "node ./index.js",
     "test": "ava",
     "test:watch": "ava --watch",
     "pretest": "npm run lint",
