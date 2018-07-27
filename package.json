@@ -4,7 +4,8 @@
   "description": "Bot that posts quote in slack",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ava",
+    "test:watch": "ava --watch",
     "pretest": "npm run lint",
     "lint": "eslint ."
   },
