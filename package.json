@@ -15,5 +15,10 @@
     "slack",
     "quote"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "eslint": "^5.2.0",
+    "eslint-config-airbnb-base": "^13.0.0"
+  }
 }
