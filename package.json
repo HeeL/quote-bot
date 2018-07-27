@@ -4,7 +4,9 @@
   "description": "Bot that posts quote in slack",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "npm run lint",
+    "lint": "eslint ."
   },
   "engines": {
     "node": ">= 8.9.0",
@@ -19,6 +21,6 @@
   "devDependencies": {
     "ava": "^0.25.0",
     "eslint": "^5.2.0",
-    "eslint-config-airbnb-base": "^13.0.0"
+    "eslint-config-google": "^0.9.1"
   }
 }

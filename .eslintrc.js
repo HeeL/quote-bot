@@ -1,5 +1,5 @@
 module.exports = {
-  "extends": [ "airbnb-base" ],
+  "extends": [ "google" ],
   "rules": {
     "comma-dangle": 0,
     "arrow-parens": 0,
