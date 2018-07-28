@@ -3,15 +3,16 @@ import sinon from 'sinon';
 import postQuoteToSlack from '../../../src/postQuoteToSlack';
 
 test('post one quote to slack', t => {
-    const postMessage = sinon.spy();
-    const slack = {
+    const postMessage = sinon.stub().resolves();
+    const slackClient = {
         chat: {postMessage}
     };
     const expectedPostMessage = {
         channel: '#somechannel',
         text: 'foobar :squirell:'
     };
-    postQuoteToSlack(slack, ['foobar']);
+    const quotes = ['foobar'];
+    postQuoteToSlack({slackClient, quotes});
 
     t.is(postMessage.callCount, 1);
     t.true(postMessage.calledWith(expectedPostMessage));
