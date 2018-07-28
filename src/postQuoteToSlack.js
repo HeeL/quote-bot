@@ -1,10 +1,10 @@
-module.exports = ({slackClient, config, quotes}) => {
+module.exports = ({slackClient, logger, config, quotes}) => {
     const postMessageParams = {
         channel: config.channelIdWhereToPostQuote,
         text: `${quotes[0]} :squirrel:`
     };
 
-    slackClient.chat.postMessage(postMessageParams)
-        .then(console.log)
-        .catch(console.error);
+    return slackClient.chat.postMessage(postMessageParams)
+        .then(logger.log)
+        .catch(logger.error);
 };

@@ -7,6 +7,10 @@ dotenv.config();
 
 postQuoteToSlack({
     slackClient: new Slack({token: process.env.SLACK_TOKEN}),
+    logger: {
+        log: console.log,
+        error: console.error
+    },
     config: {
         channelIdWhereToPostQuote: process.env.CHANNEL_ID_WHERE_TO_POST_QUOTE
     },
