@@ -1,8 +1,6 @@
-const CHANNEL_ID_WHERE_TO_POST_QUOTE = '#somechannel';
-
-module.exports = ({slackClient, quotes}) => {
+module.exports = ({slackClient, config, quotes}) => {
     const postMessageParams = {
-        channel: CHANNEL_ID_WHERE_TO_POST_QUOTE,
+        channel: config.channelIdWhereToPostQuote,
         text: `${quotes[0]} :squirrel:`
     };
 

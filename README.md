@@ -17,6 +17,5 @@ npm start
 
 ## Run locally
 
-Rename .env.example to .env and define your SLACK_TOKEN there.  
-Slack channel where quotes will be posted can be defined in `src/postQuoteToSlack.js`.  
-You can run the bot with `npm start` command.
+Rename .env.example to .env and define your SLACK_TOKEN there. You will need to define the name of the slack channel where quotes should be posted.
+Run the bot with `npm start` command.

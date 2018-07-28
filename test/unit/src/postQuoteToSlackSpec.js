@@ -8,11 +8,12 @@ test('post one quote to slack', t => {
         chat: {postMessage}
     };
     const expectedPostMessage = {
-        channel: '#somechannel',
+        channel: '#foobaria-channel',
         text: 'foobar :squirrel:'
     };
     const quotes = ['foobar'];
-    postQuoteToSlack({slackClient, quotes});
+    const config = {channelIdWhereToPostQuote: '#foobaria-channel'};
+    postQuoteToSlack({slackClient, config, quotes});
 
     t.is(postMessage.callCount, 1);
     t.true(postMessage.calledWith(expectedPostMessage));
