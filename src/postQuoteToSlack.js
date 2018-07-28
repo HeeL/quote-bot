@@ -1,4 +1,4 @@
-const quotes = require('../quotes.json');
+const quotes = require('./quotes.json');
 
 module.exports = ({slackClient, logger, config, findQuoteOfTheDay}) => {
     const postMessageParams = {
