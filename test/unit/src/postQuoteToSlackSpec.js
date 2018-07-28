@@ -11,10 +11,10 @@ test('post one quote to slack', t => {
         channel: '#foobaria-channel',
         text: 'foobar :squirrel:'
     };
-    const quotes = ['foobar'];
     const config = {channelIdWhereToPostQuote: '#foobaria-channel'};
     const logger = {log: () => {}};
-    postQuoteToSlack({slackClient, logger, config, quotes});
+    const findQuoteOfTheDay = sinon.stub().returns('foobar');
+    postQuoteToSlack({slackClient, logger, config, findQuoteOfTheDay});
 
     t.is(postMessage.callCount, 1);
     t.true(postMessage.calledWith(expectedPostMessage));
@@ -27,7 +27,8 @@ test('log success after message sent', t => {
     const logger = {
         log: sinon.spy()
     };
-    return postQuoteToSlack({slackClient, logger, config: {}, quotes: ['']})
+    const findQuoteOfTheDay = () => {};
+    return postQuoteToSlack({slackClient, logger, findQuoteOfTheDay, config: {}, quotes: ['']})
         .then(() => {
             t.is(logger.log.callCount, 1);
             t.true(logger.log.calledWith('foo bar'));
@@ -43,7 +44,8 @@ test('log error after failed to send a message', t => {
         log: () => {},
         error: sinon.spy()
     };
-    return postQuoteToSlack({slackClient, logger, config: {}, quotes: ['']})
+    const findQuoteOfTheDay = () => {};
+    return postQuoteToSlack({slackClient, logger, findQuoteOfTheDay, config: {}, quotes: ['']})
         .then(() => {
             t.is(logger.error.callCount, 1);
             t.true(logger.error.calledWith('errorzzz'));

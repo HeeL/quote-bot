@@ -1,7 +1,9 @@
-module.exports = ({slackClient, logger, config, quotes}) => {
+const quotes = require('../quotes.json');
+
+module.exports = ({slackClient, logger, config, findQuoteOfTheDay}) => {
     const postMessageParams = {
         channel: config.channelIdWhereToPostQuote,
-        text: `${quotes[0]} :squirrel:`
+        text: `${findQuoteOfTheDay(new Date(), quotes)} :squirrel:`
     };
 
     return slackClient.chat.postMessage(postMessageParams)

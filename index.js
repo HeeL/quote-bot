@@ -1,6 +1,5 @@
 const Slack = require('slack');
 const postQuoteToSlack = require('./src/postQuoteToSlack');
-const quotes = require('./quotes.json');
 const dotenv = require('dotenv');
 
 dotenv.config();
