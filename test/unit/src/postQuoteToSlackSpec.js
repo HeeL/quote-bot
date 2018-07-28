@@ -9,7 +9,7 @@ test('post one quote to slack', t => {
     };
     const expectedPostMessage = {
         channel: '#somechannel',
-        text: 'foobar :squirell:'
+        text: 'foobar :squirrel:'
     };
     const quotes = ['foobar'];
     postQuoteToSlack({slackClient, quotes});
