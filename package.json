@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Bot that posts quote in slack",
   "main": "index.js",
+  "repository": "https://github.com/HeeL/quote-bot.git",
   "scripts": {
     "start": "node ./index.js",
     "test": "ava",
