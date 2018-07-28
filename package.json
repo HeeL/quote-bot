@@ -25,5 +25,8 @@
     "eslint": "^5.2.0",
     "eslint-config-google": "^0.9.1",
     "sinon": "^6.1.4"
+  },
+  "dependencies": {
+    "slack": "^11.0.1"
   }
 }
