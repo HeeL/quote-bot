@@ -3,7 +3,8 @@ module.exports = {
   "rules": {
     "comma-dangle": 0,
     "arrow-parens": 0,
-    "indent": ["error", 4]
+    "indent": ["error", 4],
+    "max-len": ["error", { "code": 120 }]
   },
   "parserOptions": {
     "ecmaVersion": 7,
