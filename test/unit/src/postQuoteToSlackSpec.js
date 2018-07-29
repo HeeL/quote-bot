@@ -1,5 +1,6 @@
 import test from 'ava';
 import sinon from 'sinon';
+import Maybe from 'folktale/maybe';
 import postQuoteToSlack from '../../../src/postQuoteToSlack';
 
 test('post one quote to slack', t => {
@@ -13,7 +14,7 @@ test('post one quote to slack', t => {
     };
     const config = {channelIdWhereToPostQuote: '#foobaria-channel'};
     const logger = {log: () => {}};
-    const findQuoteOfTheDay = sinon.stub().returns('foobar');
+    const findQuoteOfTheDay = sinon.stub().returns(Maybe.Just('foobar'));
     postQuoteToSlack({slackClient, logger, config, findQuoteOfTheDay});
 
     t.is(postMessage.callCount, 1);
@@ -27,7 +28,7 @@ test('log success after message sent', t => {
     const logger = {
         log: sinon.spy()
     };
-    const findQuoteOfTheDay = () => {};
+    const findQuoteOfTheDay = () => Maybe.Just('');
     return postQuoteToSlack({slackClient, logger, findQuoteOfTheDay, config: {}, quotes: ['']})
         .then(() => {
             t.is(logger.log.callCount, 1);
@@ -44,7 +45,7 @@ test('log error after failed to send a message', t => {
         log: () => {},
         error: sinon.spy()
     };
-    const findQuoteOfTheDay = () => {};
+    const findQuoteOfTheDay = () => Maybe.Just('');
     return postQuoteToSlack({slackClient, logger, findQuoteOfTheDay, config: {}, quotes: ['']})
         .then(() => {
             t.is(logger.error.callCount, 1);

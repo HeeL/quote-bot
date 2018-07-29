@@ -1,12 +1,23 @@
+const {compose} = require('folktale/core/lambda');
 const quotes = require('./quotes.json');
 
-module.exports = ({slackClient, logger, config, findQuoteOfTheDay}) => {
-    const postMessageParams = {
-        channel: config.channelIdWhereToPostQuote,
-        text: `${findQuoteOfTheDay(new Date(), quotes)} :squirrel:`
+const buildPostMessageParams = (channelIdWhereToPostQuote, quote) => {
+    return {
+        channel: channelIdWhereToPostQuote,
+        text: `${quote} :squirrel:`
     };
+};
 
-    return slackClient.chat.postMessage(postMessageParams)
+const postInSlack = (slackClient, channelIdWhereToPostQuote, quote) => compose(
+    slackClient.chat.postMessage,
+    buildPostMessageParams.bind(null, channelIdWhereToPostQuote)
+)(quote);
+
+module.exports = ({slackClient, logger, config, findQuoteOfTheDay}) => {
+    const {channelIdWhereToPostQuote} = config;
+
+    return findQuoteOfTheDay(new Date(), quotes)
+        .chain(postInSlack.bind(null, slackClient, channelIdWhereToPostQuote))
         .then(logger.log)
         .catch(logger.error);
 };
