@@ -17,7 +17,8 @@ module.exports = ({slackClient, logger, config, findQuoteOfTheDay}) => {
     const {channelIdWhereToPostQuote} = config;
 
     return findQuoteOfTheDay(new Date(), quotes)
-        .chain(postInSlack.bind(null, slackClient, channelIdWhereToPostQuote))
-        .then(logger.log)
-        .catch(logger.error);
+        .chain((quote) => postInSlack(slackClient, channelIdWhereToPostQuote, quote)
+            .then(logger.log)
+            .catch(logger.error)
+        );
 };
