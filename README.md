@@ -1,6 +1,6 @@
 # quote-bot
 
-Bot takes a quote and post it in slack
+Bot takes a quote and post it in Slack
 
 ![Quote Bot](https://i.imgur.com/KAfww4P.png?1)
 
