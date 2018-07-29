@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "dotenv": "^6.0.0",
+    "folktale": "^2.1.0",
     "slack": "^11.0.1"
   }
 }
