@@ -1,3 +1,5 @@
+const Maybe = require('folktale/maybe');
+
 const dayOfTheYear = currentDate => {
     const date1 = new Date(currentDate.getFullYear(), 0, 1, 12, 0, 0); // noon on Jan. 1
     const date2 = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12, 0, 0);
@@ -6,5 +8,7 @@ const dayOfTheYear = currentDate => {
 };
 
 module.exports = (currentDate, quotes) => {
-    return quotes[(dayOfTheYear(currentDate) - 1) % quotes.length];
+    const quoteOfTheDayIndex = (dayOfTheYear(currentDate) - 1) % quotes.length;
+
+    return Maybe.fromNullable(quotes[quoteOfTheDayIndex]);
 };
