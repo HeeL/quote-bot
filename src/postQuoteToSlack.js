@@ -1,5 +1,4 @@
 const {compose} = require('folktale/core/lambda');
-const quotes = require('./quotes.json');
 
 const buildPostMessageParams = (channelIdWhereToPostQuote, quote) => {
     return {
@@ -13,7 +12,7 @@ const postInSlack = (slackClient, channelIdWhereToPostQuote, quote) => compose(
     buildPostMessageParams.bind(null, channelIdWhereToPostQuote)
 )(quote);
 
-module.exports = ({slackClient, logger, config, findQuoteOfTheDay}) => {
+module.exports = ({slackClient, logger, config, quotes, findQuoteOfTheDay}) => {
     const {channelIdWhereToPostQuote} = config;
 
     return findQuoteOfTheDay(new Date(), quotes)
